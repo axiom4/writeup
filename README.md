@@ -1,2 +1,2 @@
 # writeup
-HTB Writep
+HTB Writeup
