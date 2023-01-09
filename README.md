@@ -1,5 +1,10 @@
-# writeup
-HTB Writeup
+# HTB Writeup
+All Writeup are encrypted. To descrypt use command:
+
+```
+# openssl enc -aes-256-cbc -pass pass:[pass] -d -pbkdf2 -in [infile] -out [outfile]
+```
+
 
 ## challenge
 
