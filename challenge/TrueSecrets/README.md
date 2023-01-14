@@ -1,4 +1,6 @@
-# Analyzing memory with volatility3
+# TrueSecrets
+
+### Analyzing memory with volatility3
 
 ```
 # vol -f ../TrueSecrets.raw windows.cmdline.CmdLine
@@ -18,7 +20,7 @@ PID	Process	Args
 
 ```
 
-# Dump PID 2176 files
+### Dump PID 2176 files
 
 
 ```
@@ -36,7 +38,7 @@ ImageSectionObject	0x838afd38	7zFM.exe
 ...
 ```
 
-# Extract zip file
+### Extract zip file
 
 ```
 # unzip file.0x843f6158.0x839339d0.DataSectionObject.backup_development.zip.dat
@@ -45,7 +47,7 @@ Archive:  file.0x843f6158.0x839339d0.DataSectionObject.backup_development.zip.da
 
 ```
 
-# Find truecrypt memory password
+### Find truecrypt memory password
 
 ```
 # ./volatility_2.6  -f ../TrueSecrets.raw --profile=Win7SP1x86 truecryptsummary
@@ -63,7 +65,7 @@ Container            Path: \??\C:\Users\IEUser\Documents\development.tc
 Device               TrueCrypt at 0x83e6b600 type FILE_DEVICE_UNKNOWN
 ```
 
-# Mount truecrypt volume
+### Mount truecrypt volume
 
 ```
 # sudo cryptsetup --type tcrypt open development.tc development
@@ -78,7 +80,7 @@ AgentServer.cs*  sessions/
 
 ```
 
-# find encryption data
+### find encryption data
 
 ```
 # cat AgentServer.cs
@@ -145,7 +147,7 @@ class AgentServer {
 
 ```
 
-# View logs
+### View logs
 
 ```
 # cat *enc
@@ -153,13 +155,11 @@ class AgentServer {
 wENDQtzYcL3CKv0lnnJ4hk0JYvJVBMwTj7a4Plq8h68=
 M35jHmvkY9WGlWdXo0ByOJrYhHmtC8O0rZ28CviPexkfHCFTfKUQVw==
 ....
-
 ```
 
-# Decrypt logs
+### Decrypt logs
 
 ```
-
 # echo -n "AKaPdSgV" | xxd -ps
 414b615064536756
 
@@ -174,5 +174,4 @@ DESKTOP-MRL1A9O
 # for line in $(cat *.enc); do echo $line | openssl enc -d -des-cbc -K 414b615064536756 -iv 51655468576d5971  -a; done
 
 HTB{*********}
-
 ```
